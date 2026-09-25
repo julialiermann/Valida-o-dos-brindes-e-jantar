@@ -16,6 +16,7 @@
   --steel-light:#A9C0E8;
   --accent:#3563A8;       /* destaque azul */
   --accent-soft:#E2EAF6;
+  --hero-bg:#F4F2EE;       /* fundo claro do topo */
   --bg:#F3F5F9;
   --surface:#FFFFFF;
   --surface-2:#EAEEF5;
@@ -36,7 +37,7 @@
     color-scheme:dark;
     --brand:#15203D; --brand-ink:#FFFFFF;
     --accent:#8FB0E6; --accent-soft:#1F2F52;
-    --bg:#0B1128; --surface:#131C36; --surface-2:#1A2544; --line:#27345A;
+    --hero-bg:#131C36; --bg:#0B1128; --surface:#131C36; --surface-2:#1A2544; --line:#27345A;
     --ink:#E7ECF4; --muted:#9AA7BF;
     --ok:#4CC486; --ok-soft:#173A2A;
     --no:#F07A6C; --no-soft:#402221;
@@ -47,7 +48,7 @@
   color-scheme:dark;
   --brand:#15203D; --brand-ink:#FFFFFF;
   --accent:#8FB0E6; --accent-soft:#1F2F52;
-  --bg:#0B1128; --surface:#131C36; --surface-2:#1A2544; --line:#27345A;
+  --hero-bg:#131C36; --bg:#0B1128; --surface:#131C36; --surface-2:#1A2544; --line:#27345A;
   --ink:#E7ECF4; --muted:#9AA7BF;
   --ok:#4CC486; --ok-soft:#173A2A;
   --no:#F07A6C; --no-soft:#402221;
@@ -67,19 +68,19 @@ section{display:grid;gap:20px;padding-block:44px 0}
 .sec-head{display:grid;gap:8px}
 
 /* ---------- topo ---------- */
-.top{background:var(--brand);border-bottom:1px solid var(--line);color:var(--brand-ink);margin-inline:-16px;padding:36px 16px 40px;position:relative;overflow:hidden}
+.top{background:var(--hero-bg);border-bottom:1px solid var(--line);color:var(--ink);margin-inline:-16px;padding:36px 16px 40px;position:relative;overflow:hidden}
 .top .wrap{display:grid;gap:14px;position:relative}
 .brandline{display:flex;align-items:center;gap:14px}
-.logo{width:52px;height:52px;border-radius:12px;background:#fff;display:grid;place-items:center;flex:none}
+.logo{width:52px;height:52px;border-radius:12px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;flex:none}
 .logo svg{width:28px;height:34px}
 .brandtxt{display:grid;gap:5px}
-.brandtxt b{font:800 1.35rem/1 var(--f-display);letter-spacing:.02em;color:#fff}
+.brandtxt b{font:800 1.35rem/1 var(--f-display);letter-spacing:.02em;color:var(--ink)}
 .brandtxt span{font:600 .72rem/1.35 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--steel)}
 .hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end}
 .hero-txt{display:grid;gap:14px}
-.wolf{width:clamp(150px,22vw,250px);height:auto;margin-bottom:-40px}
+.wolf{width:clamp(140px,18vw,210px);height:auto;margin-bottom:-24px}
 .top h1{font-size:clamp(2rem,5vw,3.3rem);font-weight:800;max-width:18ch}
-.top h1 em{font-style:normal;color:var(--steel-light)}
+.top h1 em{font-style:normal;color:var(--accent)}
 .top p{max-width:62ch;opacity:.88}
 .note{display:inline-flex;gap:8px;align-items:center;font-size:.8rem;background:rgba(255,255,255,.12);padding:6px 10px;border-radius:6px;width:fit-content}
 
@@ -145,7 +146,7 @@ td input,td select{width:100%;font:500 .84rem/1.2 var(--f-body);color:var(--ink)
 td input:hover,td select:hover{border-color:var(--line)}
 td input:focus,td select:focus{background:var(--surface);border-color:var(--accent)}
 td input.num{text-align:right;width:58px}
-td.name input{min-width:190px;font-weight:700}
+td.name input{min-width:270px;font-weight:700}
 td.desc input{min-width:140px}
 td.sep{border-left:2px solid var(--line)}
 .ck{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:6px;font-weight:800;font-size:.85rem}
@@ -163,8 +164,8 @@ td.sep{border-left:2px solid var(--line)}
 /* ---------- detalhe ---------- */
 .detail{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px}
 .detail .verdict{display:grid;gap:10px;align-content:start}
-.mini-wolf{width:54px;height:54px;border-radius:50%;background:var(--brand);display:grid;place-items:center;overflow:hidden}
-.mini-wolf svg{width:46px;margin-top:10px}
+.mini-wolf{width:54px;height:54px;border-radius:50%;background:var(--accent-soft);display:grid;place-items:center;overflow:hidden}
+.mini-wolf svg{width:44px;margin-top:14px}
 .v-head{display:flex;gap:12px;align-items:center}
 .detail .verdict .big{font:800 2rem/1.05 var(--f-display)}
 .detail .verdict p{color:var(--muted);font-size:.9rem}
@@ -175,17 +176,6 @@ td.sep{border-left:2px solid var(--line)}
 .meter span{flex:1;background:var(--line);border-radius:99px}
 .meter span.on{background:var(--ok)}
 
-/* ---------- excel ---------- */
-.formulas{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow-x:auto}
-.formulas table{min-width:760px}
-.formulas td{padding:10px 12px;font-size:.86rem}
-.formulas td:first-child{font:700 .82rem/1 var(--f-mono);color:var(--accent);width:44px}
-.formulas code{font:500 .8rem/1.4 var(--f-mono);background:var(--surface-2);padding:4px 7px;border-radius:5px;white-space:nowrap}
-.formulas .ty{font:600 .7rem/1 var(--f-body);letter-spacing:.06em;text-transform:uppercase}
-.ty.in{color:var(--brand)} .ty.calc{color:var(--accent)}
-:root[data-theme="dark"] .ty.in{color:var(--muted)}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ty.in{color:var(--muted)}}
-.tip{font-size:.85rem;color:var(--muted);max-width:80ch}
 
 footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 
@@ -212,21 +202,24 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:v
     <div class="hero"><div class="hero-txt">
     <h1>Validação de <em>brindes</em> e <em>jantar</em></h1>
     </div>
-    <svg class="wolf" viewBox="0 0 200 210" role="img" aria-label="Lobinho, mascote da Diretoria de Projetos">
-  <path d="M100 196c-33 0-58-8-58-8l14-34h88l14 34s-25 8-58 8Z" fill="#6F8FC4"/>
-  <path d="M38 14 84 70 30 96Z" fill="#6F8FC4"/><path d="M46 34 72 68 42 82Z" fill="#15203D"/>
-  <path d="M162 14 116 70 170 96Z" fill="#6F8FC4"/><path d="M154 34 128 68 158 82Z" fill="#15203D"/>
-  <path d="M100 44 150 66 174 108 146 152 100 174 54 152 26 108 50 66Z" fill="#A9C0E8"/>
-  <path d="M100 44 116 94 100 110 84 94Z" fill="#6F8FC4"/>
-  <path d="M100 100 142 124 128 160 100 176 72 160 58 124Z" fill="#FFFFFF"/>
-  <path d="M26 108 54 118 44 134ZM174 108 146 118 156 134Z" fill="#FFFFFF"/>
-  <circle cx="76" cy="106" r="8" fill="#070B26"/><circle cx="124" cy="106" r="8" fill="#070B26"/>
-  <circle cx="79" cy="103" r="2.6" fill="#FFFFFF"/><circle cx="127" cy="103" r="2.6" fill="#FFFFFF"/>
-  <path d="M87 136h26l-13 14Z" fill="#070B26"/>
-  <path d="M100 150v6m0 0c-2 5-8 7-12 5m12-5c2 5 8 7 12 5" stroke="#070B26" stroke-width="3" fill="none" stroke-linecap="round"/>
-  <ellipse cx="62" cy="136" rx="7" ry="4" fill="#F4B6C2" opacity=".7"/><ellipse cx="138" cy="136" rx="7" ry="4" fill="#F4B6C2" opacity=".7"/>
-  <path d="M66 166h68l-10 16-24 14-24-14Z" fill="#15203D" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round"/>
-  <text x="100" y="181" text-anchor="middle" font-family="Manrope,system-ui,sans-serif" font-weight="800" font-size="10" fill="#FFFFFF" letter-spacing="1">PROJETOS</text>
+    <svg class="wolf" role="img" aria-label="Lobinho, mascote da Diretoria de Projetos" viewBox="0 0 220 262"><g stroke="#262626" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+<path d="M150 215C196 208 212 160 194 128C186 158 172 178 146 186Z" fill="#8C939D"/>
+<path d="M194 128C208 150 204 190 172 208C186 188 192 160 194 128Z" fill="#F2ECDC"/>
+<path d="M72 150C52 192 54 236 76 248H146C168 236 170 192 150 150Z" fill="#8C939D"/>
+<path d="M86 150C80 188 94 214 111 228C128 214 142 188 136 150Z" fill="#F2ECDC" stroke="none"/>
+<ellipse cx="88" cy="248" rx="19" ry="10" fill="#F2ECDC"/><ellipse cx="134" cy="248" rx="19" ry="10" fill="#F2ECDC"/>
+<path d="M62 76 54 12 102 50Z" fill="#8C939D"/><path d="M158 76 166 12 118 50Z" fill="#8C939D"/>
+<path d="M67 64 62 28 90 52Z" fill="#F2ECDC" stroke="none"/><path d="M153 64 158 28 130 52Z" fill="#F2ECDC" stroke="none"/>
+<path d="M110 42C150 42 177 70 179 104L194 112 179 120 187 133 168 137C155 160 131 168 110 168S65 160 52 137L33 133 41 120 26 112 41 104C43 70 70 42 110 42Z" fill="#8C939D"/>
+<path d="M96 46 101 30 108 42 116 28 120 46" fill="#8C939D"/>
+<path d="M58 118C74 110 96 112 110 128 124 112 146 110 162 118 160 146 136 162 110 162S60 146 58 118Z" fill="#F2ECDC" stroke="none"/>
+<circle cx="84" cy="104" r="15" fill="#fff"/><circle cx="136" cy="104" r="15" fill="#fff"/>
+</g>
+<circle cx="85" cy="106" r="10.5" fill="#7B2E1E"/><circle cx="135" cy="106" r="10.5" fill="#7B2E1E"/>
+<circle cx="85" cy="107" r="5.5" fill="#151515"/><circle cx="135" cy="107" r="5.5" fill="#151515"/>
+<circle cx="81" cy="101" r="3.5" fill="#fff"/><circle cx="131" cy="101" r="3.5" fill="#fff"/>
+<ellipse cx="110" cy="133" rx="9" ry="6" fill="#262626"/>
+<path d="M100 144Q110 152 110 140Q110 152 120 144" stroke="#262626" stroke-width="3" fill="none" stroke-linecap="round"/>
 </svg>
     </div>
   </div>
@@ -255,7 +248,7 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:v
 
   <section id="planilha">
     <div class="sec-head">
-      <span class="eyebrow">Exemplo interativo · projetos fictícios</span>
+      <span class="eyebrow">Exemplo interativo · dados ilustrativos</span>
       <h2>Planilha de validação</h2>
     </div>
     <div class="toolbar">
@@ -302,17 +295,6 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:v
     <div class="detail" id="detail" aria-live="polite"></div>
   </section>
 
-  <section id="excel">
-    <div class="sec-head">
-      <span class="eyebrow">Para montar no Excel</span>
-      <h2>Colunas e fórmulas</h2>
-    </div>
-    <div class="formulas">
-      <table>
-        <tbody id="ftable"></tbody>
-      </table>
-    </div>
-  </section>
 
   <footer>
     <span>EJEQ · Diretoria de Projetos</span>
@@ -321,13 +303,16 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:v
 
 <script>
 (function(){
-  const KEY = "ejeq-reconhecimento-v1";
+  const KEY = "ejeq-reconhecimento-v2";
   const SAMPLE = [
-    {nome:"Barra proteica de amendoim", csat:"4,9", ep:6, en:6, rp:14, rf:14, md:7, mb:7, inov:"Sim", desc:"Planejamento experimental (DOE) para otimizar a formulação", val:"Validado"},
-    {nome:"Shelf-life de geleia artesanal", csat:"4,8", ep:5, en:5, rp:12, rf:12, md:6, mb:5, inov:"Não", desc:"", val:"Validado"},
-    {nome:"Rotulagem nutricional – linha de pães", csat:"4,6", ep:4, en:4, rp:8, rf:8, md:5, mb:5, inov:"Não", desc:"", val:"Pendente"},
-    {nome:"Adequação às Boas Práticas de Fabricação", csat:"4,5", ep:7, en:6, rp:16, rf:15, md:8, mb:7, inov:"Sim", desc:"Checklist digital de BPF entregue a mais para o cliente", val:"Pendente"},
-    {nome:"Molho vegano de castanhas", csat:"4,2", ep:5, en:4, rp:10, rf:9, md:6, mb:4, inov:"Não", desc:"", val:"Pendente"}
+    {nome:"Abner (Café Concentrado) – Desenvolvimento", csat:"4,6", ep:6, en:5, rp:14, rf:13, md:7, mb:5, inov:"Não", desc:"", val:"Pendente"},
+    {nome:"Barrinha de proteína – Melhoramento", csat:"4,8", ep:5, en:5, rp:12, rf:12, md:6, mb:5, inov:"Não", desc:"", val:"Validado"},
+    {nome:"Donna Candinha – Shelf Life", csat:"4,9", ep:6, en:6, rp:14, rf:14, md:7, mb:7, inov:"Sim", desc:"Acompanhamento estendido de 90 dias", val:"Validado"},
+    {nome:"Everton, água saborizada – Desenvolvimento", csat:"4,7", ep:5, en:5, rp:10, rf:10, md:6, mb:5, inov:"Sim", desc:"Teste sensorial com público-alvo", val:"Pendente"},
+    {nome:"Fritelli – Shelf Life", csat:"4,5", ep:4, en:4, rp:8, rf:8, md:5, mb:4, inov:"Não", desc:"", val:"Pendente"},
+    {nome:"Limelada – Shelf Life", csat:"4,8", ep:5, en:5, rp:12, rf:12, md:6, mb:6, inov:"Sim", desc:"Planejamento experimental (DOE)", val:"Validado"},
+    {nome:"Molho Teriyaki – Desenvolvimento", csat:"4,4", ep:6, en:5, rp:14, rf:12, md:7, mb:5, inov:"Não", desc:"", val:"Pendente"},
+    {nome:"Rosecleia, gel de carboidrato – EDV", csat:"4,7", ep:4, en:3, rp:8, rf:8, md:5, mb:5, inov:"Sim", desc:"Entrega extra de tabela nutricional", val:"Pendente"}
   ];
   let rows, sel = 0;
   try { rows = JSON.parse(localStorage.getItem(KEY)); } catch(e) {}
@@ -402,7 +387,7 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:v
     const color = e.nivel==="jantar" ? "var(--gold)" : e.nivel==="brinde" ? "var(--accent)" : "var(--muted)";
     el.innerHTML = `
       <div class="verdict">
-        <div class="v-head"><span class="mini-wolf"><svg  viewBox="0 0 200 210" aria-hidden="true">  <path d="M100 196c-33 0-58-8-58-8l14-34h88l14 34s-25 8-58 8Z" fill="#6F8FC4"/>  <path d="M38 14 84 70 30 96Z" fill="#6F8FC4"/><path d="M46 34 72 68 42 82Z" fill="#15203D"/>  <path d="M162 14 116 70 170 96Z" fill="#6F8FC4"/><path d="M154 34 128 68 158 82Z" fill="#15203D"/>  <path d="M100 44 150 66 174 108 146 152 100 174 54 152 26 108 50 66Z" fill="#A9C0E8"/>  <path d="M100 44 116 94 100 110 84 94Z" fill="#6F8FC4"/>  <path d="M100 100 142 124 128 160 100 176 72 160 58 124Z" fill="#FFFFFF"/>  <path d="M26 108 54 118 44 134ZM174 108 146 118 156 134Z" fill="#FFFFFF"/>  <circle cx="76" cy="106" r="8" fill="#070B26"/><circle cx="124" cy="106" r="8" fill="#070B26"/>  <circle cx="79" cy="103" r="2.6" fill="#FFFFFF"/><circle cx="127" cy="103" r="2.6" fill="#FFFFFF"/>  <path d="M87 136h26l-13 14Z" fill="#070B26"/>  <path d="M100 150v6m0 0c-2 5-8 7-12 5m12-5c2 5 8 7 12 5" stroke="#070B26" stroke-width="3" fill="none" stroke-linecap="round"/>  <ellipse cx="62" cy="136" rx="7" ry="4" fill="#F4B6C2" opacity=".7"/><ellipse cx="138" cy="136" rx="7" ry="4" fill="#F4B6C2" opacity=".7"/>  <path d="M66 166h68l-10 16-24 14-24-14Z" fill="#15203D" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round"/>  <text x="100" y="181" text-anchor="middle" font-family="Manrope,system-ui,sans-serif" font-weight="800" font-size="10" fill="#FFFFFF" letter-spacing="1">PROJETOS</text></svg></span><div><span class="eyebrow">Resultado do projeto</span>
+        <div class="v-head"><span class="mini-wolf"><svg aria-hidden="true" viewBox="0 0 220 262"><g stroke="#262626" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><path d="M150 215C196 208 212 160 194 128C186 158 172 178 146 186Z" fill="#8C939D"/><path d="M194 128C208 150 204 190 172 208C186 188 192 160 194 128Z" fill="#F2ECDC"/><path d="M72 150C52 192 54 236 76 248H146C168 236 170 192 150 150Z" fill="#8C939D"/><path d="M86 150C80 188 94 214 111 228C128 214 142 188 136 150Z" fill="#F2ECDC" stroke="none"/><ellipse cx="88" cy="248" rx="19" ry="10" fill="#F2ECDC"/><ellipse cx="134" cy="248" rx="19" ry="10" fill="#F2ECDC"/><path d="M62 76 54 12 102 50Z" fill="#8C939D"/><path d="M158 76 166 12 118 50Z" fill="#8C939D"/><path d="M67 64 62 28 90 52Z" fill="#F2ECDC" stroke="none"/><path d="M153 64 158 28 130 52Z" fill="#F2ECDC" stroke="none"/><path d="M110 42C150 42 177 70 179 104L194 112 179 120 187 133 168 137C155 160 131 168 110 168S65 160 52 137L33 133 41 120 26 112 41 104C43 70 70 42 110 42Z" fill="#8C939D"/><path d="M96 46 101 30 108 42 116 28 120 46" fill="#8C939D"/><path d="M58 118C74 110 96 112 110 128 124 112 146 110 162 118 160 146 136 162 110 162S60 146 58 118Z" fill="#F2ECDC" stroke="none"/><circle cx="84" cy="104" r="15" fill="#fff"/><circle cx="136" cy="104" r="15" fill="#fff"/></g><circle cx="85" cy="106" r="10.5" fill="#7B2E1E"/><circle cx="135" cy="106" r="10.5" fill="#7B2E1E"/><circle cx="85" cy="107" r="5.5" fill="#151515"/><circle cx="135" cy="107" r="5.5" fill="#151515"/><circle cx="81" cy="101" r="3.5" fill="#fff"/><circle cx="131" cy="101" r="3.5" fill="#fff"/><ellipse cx="110" cy="133" rx="9" ry="6" fill="#262626"/><path d="M100 144Q110 152 110 140Q110 152 120 144" stroke="#262626" stroke-width="3" fill="none" stroke-linecap="round"/></svg></span><div><span class="eyebrow">Resultado do projeto</span>
         <h3>${esc(r.nome) || "Projeto sem nome"}</h3></div></div>
         <span class="big" style="color:${color}">${NIVEL[e.nivel]}</span>
         <div class="meter" aria-hidden="true">${e.c.map(c=>`<span class="${c.ok?"on":""}"></span>`).join("")}</div>
@@ -450,29 +435,6 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:v
     rows = SAMPLE.map(r => ({...r})); sel = 0; save(); render();
   });
 
-  // Tabela de fórmulas para o Excel
-  const F = [
-    ["A","Projeto","in","Nome do projeto"],
-    ["B","CSAT médio","in","Média do CSAT do projeto (escala 1 a 5)"],
-    ["C","Entregas previstas","in","Nº de entregas no cronograma"],
-    ["D","Entregas no prazo","in","Nº de entregas feitas dentro do prazo"],
-    ["E","Repasses previstos","in","Nº de repasses semanais combinados"],
-    ["F","Repasses feitos","in","Nº de repasses realizados"],
-    ["G","Metas definidas","in","Nº de metas definidas no início"],
-    ["H","Metas batidas","in","Nº de metas atingidas na finalização"],
-    ["I","Inovação","in","Sim / Não (campo novo)"],
-    ["J","Descrição da inovação","in","Texto curto (campo novo)"],
-    ["K","✓ CSAT","calc",'=SE(B2>=4,7;1;0)'],
-    ["L","✓ Prazo","calc",'=SE(E(C2>0;D2>=C2);1;0)'],
-    ["M","✓ Repasses","calc",'=SE(E(E2>0;F2>=E2);1;0)'],
-    ["N","✓ Metas","calc",'=SE(G2>0;SE(H2/G2>=0,85;1;0);0)'],
-    ["O","✓ Inovação","calc",'=SE(I2="Sim";1;0)'],
-    ["P","Total","calc",'=SOMA(K2:O2)'],
-    ["Q","Nível","calc",'=SE(P2=5;"Jantar";SE(P2>=3;"Brinde";"Sem reconhecimento"))'],
-    ["R","Validação","in","Pendente / Validado (Coordenação + Diretoria)"]
-  ];
-  document.getElementById("ftable").innerHTML = F.map(([c,n,t,v]) =>
-    `<tr><td>${c}</td><td><strong>${n}</strong></td><td><span class="ty ${t}">${t==="in"?"preenchido":"fórmula"}</span></td><td>${t==="calc"?`<code>${esc(v)}</code>`:esc(v)}</td></tr>`).join("");
 
   render();
 })();
