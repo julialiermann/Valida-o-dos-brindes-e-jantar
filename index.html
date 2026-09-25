@@ -5,20 +5,23 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
 /* ============================================================
-   IDENTIDADE VISUAL — cores provisórias.
-   Para aplicar a paleta oficial da EJEQ, troque só estes tokens.
+   IDENTIDADE VISUAL EJEQ — azul-marinho da plataforma interna,
+   azul-aço de apoio e branco. Troque só estes tokens para ajustar.
    ============================================================ */
 :root{
-  --brand:#16345F;        /* cor principal (azul) */
-  --brand-ink:#FFFFFF;    /* texto sobre a cor principal */
-  --accent:#F08A24;       /* cor de destaque (laranja) */
-  --accent-soft:#FDEBD8;
-  --bg:#F5F7FA;
+  --brand:#15203D;        /* azul-marinho EJEQ */
+  --brand-deep:#070B26;   /* azul da chama do logo */
+  --brand-ink:#FFFFFF;
+  --steel:#6F8FC4;        /* azul-aço ("PLATAFORMA INTERNA") */
+  --steel-light:#A9C0E8;
+  --accent:#3563A8;       /* destaque azul */
+  --accent-soft:#E2EAF6;
+  --bg:#F3F5F9;
   --surface:#FFFFFF;
-  --surface-2:#EDF1F6;
-  --line:#D6DDE7;
-  --ink:#14213A;
-  --muted:#5A6780;
+  --surface-2:#EAEEF5;
+  --line:#D3DAE6;
+  --ink:#15203D;
+  --muted:#586584;
   --ok:#1E8A52;  --ok-soft:#DDF3E6;
   --no:#C0392B;  --no-soft:#F8E1DE;
   --gold:#B7791F; --gold-soft:#FBEFD5;
@@ -31,9 +34,9 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     color-scheme:dark;
-    --brand:#244B84; --brand-ink:#FFFFFF;
-    --accent:#F59B42; --accent-soft:#3A2A18;
-    --bg:#0E1523; --surface:#152035; --surface-2:#1B2840; --line:#2A3A57;
+    --brand:#15203D; --brand-ink:#FFFFFF;
+    --accent:#8FB0E6; --accent-soft:#1F2F52;
+    --bg:#0B1128; --surface:#131C36; --surface-2:#1A2544; --line:#27345A;
     --ink:#E7ECF4; --muted:#9AA7BF;
     --ok:#4CC486; --ok-soft:#173A2A;
     --no:#F07A6C; --no-soft:#402221;
@@ -42,9 +45,9 @@
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --brand:#244B84; --brand-ink:#FFFFFF;
-  --accent:#F59B42; --accent-soft:#3A2A18;
-  --bg:#0E1523; --surface:#152035; --surface-2:#1B2840; --line:#2A3A57;
+  --brand:#15203D; --brand-ink:#FFFFFF;
+  --accent:#8FB0E6; --accent-soft:#1F2F52;
+  --bg:#0B1128; --surface:#131C36; --surface-2:#1A2544; --line:#27345A;
   --ink:#E7ECF4; --muted:#9AA7BF;
   --ok:#4CC486; --ok-soft:#173A2A;
   --no:#F07A6C; --no-soft:#402221;
@@ -64,14 +67,20 @@ section{display:grid;gap:20px;padding-block:44px 0}
 .sec-head{display:grid;gap:8px}
 
 /* ---------- topo ---------- */
-.top{background:var(--brand);color:var(--brand-ink);margin-inline:-16px;padding:36px 16px 40px;position:relative;overflow:hidden}
+.top{background:var(--brand);border-bottom:1px solid var(--line);color:var(--brand-ink);margin-inline:-16px;padding:36px 16px 40px;position:relative;overflow:hidden}
 .top .wrap{display:grid;gap:14px;position:relative}
-.brandline{display:flex;align-items:center;gap:10px;font:700 .8rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;opacity:.9}
-.brandline b{background:var(--accent);color:#1b1206;padding:5px 8px;border-radius:5px;letter-spacing:.08em}
+.brandline{display:flex;align-items:center;gap:14px}
+.logo{width:52px;height:52px;border-radius:12px;background:#fff;display:grid;place-items:center;flex:none}
+.logo svg{width:28px;height:34px}
+.brandtxt{display:grid;gap:5px}
+.brandtxt b{font:800 1.35rem/1 var(--f-display);letter-spacing:.02em;color:#fff}
+.brandtxt span{font:600 .72rem/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--steel)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end}
+.hero-txt{display:grid;gap:14px}
+.wolf{width:clamp(150px,22vw,250px);height:auto;margin-bottom:-40px}
 .top h1{font-size:clamp(2rem,5vw,3.3rem);font-weight:800;max-width:18ch}
-.top h1 em{font-style:normal;color:var(--accent)}
+.top h1 em{font-style:normal;color:var(--steel-light)}
 .top p{max-width:62ch;opacity:.88}
-.paw{position:absolute;right:-30px;bottom:-40px;width:260px;opacity:.09;pointer-events:none}
 .note{display:inline-flex;gap:8px;align-items:center;font-size:.8rem;background:rgba(255,255,255,.12);padding:6px 10px;border-radius:6px;width:fit-content}
 
 /* ---------- fluxo ---------- */
@@ -136,8 +145,8 @@ td input,td select{width:100%;font:500 .84rem/1.2 var(--f-body);color:var(--ink)
 td input:hover,td select:hover{border-color:var(--line)}
 td input:focus,td select:focus{background:var(--surface);border-color:var(--accent)}
 td input.num{text-align:right;width:58px}
-td.name input{min-width:250px;font-weight:700}
-td.desc input{min-width:200px}
+td.name input{min-width:190px;font-weight:700}
+td.desc input{min-width:140px}
 td.sep{border-left:2px solid var(--line)}
 .ck{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:6px;font-weight:800;font-size:.85rem}
 .ck.y{background:var(--ok-soft);color:var(--ok)}
@@ -154,6 +163,9 @@ td.sep{border-left:2px solid var(--line)}
 /* ---------- detalhe ---------- */
 .detail{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px}
 .detail .verdict{display:grid;gap:10px;align-content:start}
+.mini-wolf{width:54px;height:54px;border-radius:50%;background:var(--brand);display:grid;place-items:center;overflow:hidden}
+.mini-wolf svg{width:46px;margin-top:10px}
+.v-head{display:flex;gap:12px;align-items:center}
 .detail .verdict .big{font:800 2rem/1.05 var(--f-display)}
 .detail .verdict p{color:var(--muted);font-size:.9rem}
 .detail ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
@@ -182,6 +194,10 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:v
   .flow{grid-template-columns:repeat(2,1fr)}
   .detail{grid-template-columns:1fr}
 }
+@media (max-width:700px){
+  .hero{grid-template-columns:1fr}
+  .wolf{justify-self:end;width:130px;margin-top:-10px}
+}
 @media (max-width:620px){
   .crit,.flow,.levels{grid-template-columns:1fr}
 }
@@ -191,55 +207,56 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:v
 </style>
 
 <header class="top">
-  <svg class="paw" viewBox="0 0 100 100" aria-hidden="true"><g fill="currentColor"><ellipse cx="50" cy="66" rx="22" ry="19"/><ellipse cx="24" cy="40" rx="9" ry="12"/><ellipse cx="41" cy="26" rx="9" ry="12"/><ellipse cx="60" cy="26" rx="9" ry="12"/><ellipse cx="77" cy="40" rx="9" ry="12"/></g></svg>
   <div class="wrap">
-    <div class="brandline"><b>EJEQ</b> Diretoria de Projetos · 2026</div>
-    <h1>Reconhecimento da <em>alcateia</em>: brinde e jantar</h1>
-    <p>Como um projeto passa a ser elegível ao brinde ou ao jantar. Os dados vêm do fluxo de planilhas que já alimenta o Power BI. A única coisa nova para o Gerente de Projetos preencher é o campo de inovação.</p>
-    <span class="note">Protótipo: a planilha abaixo é interativa e usa projetos de exemplo.</span>
+    <div class="brandline"><span class="logo"><svg viewBox="0 0 28 34" aria-hidden="true"><path fill="#070B26" d="M15.5 0C17 6 23 9.5 25.6 15.2c2.7 6 .6 13.3-5.4 16.6-2 1.1-4.3 1.7-6.6 1.7C6 33.5 1 28.3 1 21.4c0-4.5 2.2-7.6 4.6-10.4.2 3 1.3 5.3 3.4 6.6C8.2 10.4 11.6 4.6 15.5 0Z"/><path fill="#fff" d="M14.6 16.5c.8 3.3 4.4 5 4.4 9.1 0 3-2.3 5.3-5.2 5.3-2.8 0-4.9-2.1-4.9-4.9 0-2.2 1.2-3.7 2.5-4.9.2 1.4.8 2.4 1.8 3-.3-2.9.4-5.4 1.4-7.6Z"/></svg></span><span class="brandtxt"><b>EJEQ</b><span>Diretoria de Projetos · 2026</span></span></div>
+    <div class="hero"><div class="hero-txt">
+    <h1>Validação de <em>brindes</em> e <em>jantar</em></h1>
+    </div>
+    <svg class="wolf" viewBox="0 0 200 210" role="img" aria-label="Lobinho, mascote da Diretoria de Projetos">
+  <path d="M100 196c-33 0-58-8-58-8l14-34h88l14 34s-25 8-58 8Z" fill="#6F8FC4"/>
+  <path d="M38 14 84 70 30 96Z" fill="#6F8FC4"/><path d="M46 34 72 68 42 82Z" fill="#15203D"/>
+  <path d="M162 14 116 70 170 96Z" fill="#6F8FC4"/><path d="M154 34 128 68 158 82Z" fill="#15203D"/>
+  <path d="M100 44 150 66 174 108 146 152 100 174 54 152 26 108 50 66Z" fill="#A9C0E8"/>
+  <path d="M100 44 116 94 100 110 84 94Z" fill="#6F8FC4"/>
+  <path d="M100 100 142 124 128 160 100 176 72 160 58 124Z" fill="#FFFFFF"/>
+  <path d="M26 108 54 118 44 134ZM174 108 146 118 156 134Z" fill="#FFFFFF"/>
+  <circle cx="76" cy="106" r="8" fill="#070B26"/><circle cx="124" cy="106" r="8" fill="#070B26"/>
+  <circle cx="79" cy="103" r="2.6" fill="#FFFFFF"/><circle cx="127" cy="103" r="2.6" fill="#FFFFFF"/>
+  <path d="M87 136h26l-13 14Z" fill="#070B26"/>
+  <path d="M100 150v6m0 0c-2 5-8 7-12 5m12-5c2 5 8 7 12 5" stroke="#070B26" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <ellipse cx="62" cy="136" rx="7" ry="4" fill="#F4B6C2" opacity=".7"/><ellipse cx="138" cy="136" rx="7" ry="4" fill="#F4B6C2" opacity=".7"/>
+  <path d="M66 166h68l-10 16-24 14-24-14Z" fill="#15203D" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round"/>
+  <text x="100" y="181" text-anchor="middle" font-family="Manrope,system-ui,sans-serif" font-weight="800" font-size="10" fill="#FFFFFF" letter-spacing="1">PROJETOS</text>
+</svg>
+    </div>
   </div>
 </header>
 
 <main class="wrap">
 
-  <section id="fluxo">
-    <div class="sec-head">
-      <span class="eyebrow">Como funciona</span>
-      <h2>Do dado do projeto ao reconhecimento</h2>
-    </div>
-    <div class="flow">
-      <div class="step"><span class="n">1</span><span class="who">Gerente de Projetos</span><h3>Alimenta a planilha</h3><p>Ao longo da execução, preenche CSAT, entregas, repasses e metas no fluxo que já reporta ao Power BI. No fim, marca se houve inovação e descreve.</p></div>
-      <div class="step"><span class="n">2</span><span class="who">Planilha</span><h3>Calcula a elegibilidade</h3><p>Cada critério vira 1 (atingido) ou 0 (não atingido). A soma define o nível: 3 ou 4 critérios dá brinde, 5 critérios dá jantar.</p></div>
-      <div class="step"><span class="n">3</span><span class="who">Coordenação + Diretoria</span><h3>Validam juntos</h3><p>Coordenador(a) e Diretor(a) de Projetos conferem os números e confirmam o resultado. A decisão parte de indicadores, não de percepção.</p></div>
-      <div class="step"><span class="n">4</span><span class="who">EJEQ inteira</span><h3>Reconhece e divulga</h3><p>Entrega do brinde ou reembolso do jantar via pipe de G&amp;G. O projeto é apresentado em Reunião Geral e celebrado no grupo EXEQ.</p></div>
-    </div>
-  </section>
-
   <section id="criterios">
     <div class="sec-head">
-      <span class="eyebrow">Os 5 critérios</span>
-      <h2>O que é validado em cada projeto</h2>
-      <p class="lede">Todos os critérios têm uma regra objetiva. Os campos em fonte mono são as colunas que o Gerente de Projetos preenche.</p>
+      <span class="eyebrow">Regras</span>
+      <h2>Critérios e campos</h2>
     </div>
     <div class="crit">
-      <div class="c"><span class="k">CSAT</span><span class="rule">média ≥ 4,7</span><p>Satisfação do cliente com a entrega. Reflexo direto do sucesso do projeto.</p><span class="field">CSAT médio do projeto</span></div>
-      <div class="c"><span class="k">Prazo das entregas</span><span class="rule">100% no prazo</span><p>Cronograma acordado com o cliente cumprido, com semanas de segurança.</p><span class="field">entregas previstas<br>entregas no prazo</span></div>
-      <div class="c"><span class="k">Repasses semanais</span><span class="rule">100% feitos</span><p>Transparência e comunicação constante sobre o andamento do projeto.</p><span class="field">repasses previstos<br>repasses feitos</span></div>
-      <div class="c"><span class="k">Metas do projeto</span><span class="rule">≥ 85% batidas</span><p>Objetivos específicos definidos no início e atingidos na finalização.</p><span class="field">metas definidas<br>metas batidas</span></div>
-      <div class="c new"><span class="k">Inovação</span><span class="rule">Sim</span><p>Solução, ferramenta ou metodologia fora do padrão da Diretoria, ou entrega extra que agregou valor.</p><span class="field">inovação (Sim/Não)<br>descrição breve</span></div>
+      <div class="c"><span class="k">CSAT</span><span class="rule">média ≥ 4,7</span><span class="field">CSAT médio do projeto</span></div>
+      <div class="c"><span class="k">Prazo das entregas</span><span class="rule">100% no prazo</span><span class="field">entregas previstas<br>entregas no prazo</span></div>
+      <div class="c"><span class="k">Repasses semanais</span><span class="rule">100% feitos</span><span class="field">repasses previstos<br>repasses feitos</span></div>
+      <div class="c"><span class="k">Metas do projeto</span><span class="rule">≥ 85% batidas</span><span class="field">metas definidas<br>metas batidas</span></div>
+      <div class="c new"><span class="k">Inovação</span><span class="rule">Sim</span><span class="field">inovação (Sim/Não)<br>descrição breve</span></div>
     </div>
     <div class="levels">
-      <div class="lv jantar"><div class="dots"><i></i><i></i><i></i><i></i><i></i></div><span class="big">Jantar</span><span class="req">5 de 5 critérios</span><p>Até R$ 450 para a equipe (valor pensado para 5 membros). A equipe escolhe o local; o GP envia a nota fiscal única pelo pipe de reembolso.</p></div>
-      <div class="lv brinde"><div class="dots"><i></i><i></i><i></i><i></i><i></i></div><span class="big">Brinde</span><span class="req">3 ou 4 de 5 critérios</span><p>Brinde personalizado com a identidade da EJEQ e, quando possível, um elemento do projeto: garrafa, moleskine com caneta ou ecobag.</p></div>
-      <div class="lv none"><div class="dots"><i></i><i></i><i></i><i></i><i></i></div><span class="big">Sem reconhecimento</span><span class="req">0 a 2 de 5 critérios</span><p>O projeto segue acompanhado normalmente. Os critérios não atingidos mostram onde a equipe pode melhorar.</p></div>
+      <div class="lv jantar"><div class="dots"><i></i><i></i><i></i><i></i><i></i></div><span class="big">Jantar</span><span class="req">5 de 5 critérios</span></div>
+      <div class="lv brinde"><div class="dots"><i></i><i></i><i></i><i></i><i></i></div><span class="big">Brinde</span><span class="req">3 ou 4 de 5 critérios</span></div>
+      <div class="lv none"><div class="dots"><i></i><i></i><i></i><i></i><i></i></div><span class="big">Sem reconhecimento</span><span class="req">0 a 2 de 5 critérios</span></div>
     </div>
   </section>
 
   <section id="planilha">
     <div class="sec-head">
-      <span class="eyebrow">Planilha de acompanhamento</span>
-      <h2>Teste a validação</h2>
-      <p class="lede">Edite qualquer célula e veja os critérios e o nível mudarem na hora. Clique em uma linha para ver o motivo do resultado.</p>
+      <span class="eyebrow">Exemplo interativo · projetos fictícios</span>
+      <h2>Planilha de validação</h2>
     </div>
     <div class="toolbar">
       <div class="summary" id="summary"></div>
@@ -281,7 +298,6 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:v
         <tbody id="rows"></tbody>
       </table>
     </div>
-    <p class="sample">Projetos fictícios, apenas para demonstração. As edições ficam salvas só no seu navegador.</p>
 
     <div class="detail" id="detail" aria-live="polite"></div>
   </section>
@@ -290,19 +306,16 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:v
     <div class="sec-head">
       <span class="eyebrow">Para montar no Excel</span>
       <h2>Colunas e fórmulas</h2>
-      <p class="lede">A mesma lógica da planilha acima, pronta para colar na linha 2 do Excel em português (separador <code>;</code>) e arrastar para baixo.</p>
     </div>
     <div class="formulas">
       <table>
         <tbody id="ftable"></tbody>
       </table>
     </div>
-    <p class="tip">Dica: na coluna I, use Dados › Validação de Dados › Lista com <code>Sim;Não</code>, e na coluna R a lista <code>Pendente;Validado</code>. Uma formatação condicional em Q (dourado para “Jantar”, laranja para “Brinde”) deixa o resultado visível de longe.</p>
   </section>
 
   <footer>
-    <span>EJEQ · Diretoria de Projetos · Proposta de sistema de motivação extrínseca e visibilidade</span>
-    <span>Inspirado no modelo do GEPEA (UNICAMP)</span>
+    <span>EJEQ · Diretoria de Projetos</span>
   </footer>
 </main>
 
@@ -386,20 +399,14 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:v
     const r = rows[sel];
     if (!r) { el.innerHTML = `<p class="lede">Adicione um projeto para ver a análise.</p>`; return; }
     const e = evaluate(r);
-    const why = e.nivel === "jantar"
-      ? "Atingiu os 5 critérios. A equipe recebe até R$ 450 para o jantar e o projeto é apresentado em Reunião Geral."
-      : e.nivel === "brinde"
-      ? `Atingiu ${e.total} de 5 critérios. Cada membro recebe o brinde personalizado${e.total===4?"; faltou 1 critério para o jantar":""}.`
-      : `Atingiu ${e.total} de 5 critérios. São necessários pelo menos 3 para o brinde.`;
     const color = e.nivel==="jantar" ? "var(--gold)" : e.nivel==="brinde" ? "var(--accent)" : "var(--muted)";
     el.innerHTML = `
       <div class="verdict">
-        <span class="eyebrow">Resultado do projeto</span>
-        <h3>${esc(r.nome) || "Projeto sem nome"}</h3>
+        <div class="v-head"><span class="mini-wolf"><svg  viewBox="0 0 200 210" aria-hidden="true">  <path d="M100 196c-33 0-58-8-58-8l14-34h88l14 34s-25 8-58 8Z" fill="#6F8FC4"/>  <path d="M38 14 84 70 30 96Z" fill="#6F8FC4"/><path d="M46 34 72 68 42 82Z" fill="#15203D"/>  <path d="M162 14 116 70 170 96Z" fill="#6F8FC4"/><path d="M154 34 128 68 158 82Z" fill="#15203D"/>  <path d="M100 44 150 66 174 108 146 152 100 174 54 152 26 108 50 66Z" fill="#A9C0E8"/>  <path d="M100 44 116 94 100 110 84 94Z" fill="#6F8FC4"/>  <path d="M100 100 142 124 128 160 100 176 72 160 58 124Z" fill="#FFFFFF"/>  <path d="M26 108 54 118 44 134ZM174 108 146 118 156 134Z" fill="#FFFFFF"/>  <circle cx="76" cy="106" r="8" fill="#070B26"/><circle cx="124" cy="106" r="8" fill="#070B26"/>  <circle cx="79" cy="103" r="2.6" fill="#FFFFFF"/><circle cx="127" cy="103" r="2.6" fill="#FFFFFF"/>  <path d="M87 136h26l-13 14Z" fill="#070B26"/>  <path d="M100 150v6m0 0c-2 5-8 7-12 5m12-5c2 5 8 7 12 5" stroke="#070B26" stroke-width="3" fill="none" stroke-linecap="round"/>  <ellipse cx="62" cy="136" rx="7" ry="4" fill="#F4B6C2" opacity=".7"/><ellipse cx="138" cy="136" rx="7" ry="4" fill="#F4B6C2" opacity=".7"/>  <path d="M66 166h68l-10 16-24 14-24-14Z" fill="#15203D" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round"/>  <text x="100" y="181" text-anchor="middle" font-family="Manrope,system-ui,sans-serif" font-weight="800" font-size="10" fill="#FFFFFF" letter-spacing="1">PROJETOS</text></svg></span><div><span class="eyebrow">Resultado do projeto</span>
+        <h3>${esc(r.nome) || "Projeto sem nome"}</h3></div></div>
         <span class="big" style="color:${color}">${NIVEL[e.nivel]}</span>
         <div class="meter" aria-hidden="true">${e.c.map(c=>`<span class="${c.ok?"on":""}"></span>`).join("")}</div>
-        <p>${why}</p>
-        <p>Validação: <strong>${r.val==="Validado" ? "confirmada pela Coordenação e Diretoria" : "pendente de Coordenação e Diretoria"}</strong></p>
+        <p>Validação: <strong>${r.val==="Validado" ? "Validado" : "Pendente"}</strong> · ${e.total}/5 critérios</p>
       </div>
       <ul>${e.c.map(c=>`<li><span class="ck ${c.ok?"y":"n"}">${c.ok?"✓":"✕"}</span><span><strong>${c.k}</strong><small>${esc(c.info)}</small></span></li>`).join("")}</ul>`;
   }
