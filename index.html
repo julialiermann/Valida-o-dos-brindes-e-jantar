@@ -1,0 +1,472 @@
+<title>Alcateia Reconhecida</title>
+<meta name="description" content="Planilha de validação dos critérios de brinde e jantar da Diretoria de Projetos da EJEQ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* ============================================================
+   IDENTIDADE VISUAL — cores provisórias.
+   Para aplicar a paleta oficial da EJEQ, troque só estes tokens.
+   ============================================================ */
+:root{
+  --brand:#16345F;        /* cor principal (azul) */
+  --brand-ink:#FFFFFF;    /* texto sobre a cor principal */
+  --accent:#F08A24;       /* cor de destaque (laranja) */
+  --accent-soft:#FDEBD8;
+  --bg:#F5F7FA;
+  --surface:#FFFFFF;
+  --surface-2:#EDF1F6;
+  --line:#D6DDE7;
+  --ink:#14213A;
+  --muted:#5A6780;
+  --ok:#1E8A52;  --ok-soft:#DDF3E6;
+  --no:#C0392B;  --no-soft:#F8E1DE;
+  --gold:#B7791F; --gold-soft:#FBEFD5;
+
+  --f-display:"Bricolage Grotesque","Manrope",system-ui,sans-serif;
+  --f-body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --brand:#244B84; --brand-ink:#FFFFFF;
+    --accent:#F59B42; --accent-soft:#3A2A18;
+    --bg:#0E1523; --surface:#152035; --surface-2:#1B2840; --line:#2A3A57;
+    --ink:#E7ECF4; --muted:#9AA7BF;
+    --ok:#4CC486; --ok-soft:#173A2A;
+    --no:#F07A6C; --no-soft:#402221;
+    --gold:#F2B84B; --gold-soft:#3A2F17;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --brand:#244B84; --brand-ink:#FFFFFF;
+  --accent:#F59B42; --accent-soft:#3A2A18;
+  --bg:#0E1523; --surface:#152035; --surface-2:#1B2840; --line:#2A3A57;
+  --ink:#E7ECF4; --muted:#9AA7BF;
+  --ok:#4CC486; --ok-soft:#173A2A;
+  --no:#F07A6C; --no-soft:#402221;
+  --gold:#F2B84B; --gold-soft:#3A2F17;
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.6 var(--f-body);padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:1180px;margin:0 auto}
+h1,h2,h3{font-family:var(--f-display);line-height:1.15;text-wrap:balance;margin:0}
+h2{font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:800}
+h3{font-size:1.08rem;font-weight:600}
+p{margin:0}
+.lede{max-width:66ch;color:var(--muted)}
+.eyebrow{font:600 .72rem/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+section{display:grid;gap:20px;padding-block:44px 0}
+.sec-head{display:grid;gap:8px}
+
+/* ---------- topo ---------- */
+.top{background:var(--brand);color:var(--brand-ink);margin-inline:-16px;padding:36px 16px 40px;position:relative;overflow:hidden}
+.top .wrap{display:grid;gap:14px;position:relative}
+.brandline{display:flex;align-items:center;gap:10px;font:700 .8rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;opacity:.9}
+.brandline b{background:var(--accent);color:#1b1206;padding:5px 8px;border-radius:5px;letter-spacing:.08em}
+.top h1{font-size:clamp(2rem,5vw,3.3rem);font-weight:800;max-width:18ch}
+.top h1 em{font-style:normal;color:var(--accent)}
+.top p{max-width:62ch;opacity:.88}
+.paw{position:absolute;right:-30px;bottom:-40px;width:260px;opacity:.09;pointer-events:none}
+.note{display:inline-flex;gap:8px;align-items:center;font-size:.8rem;background:rgba(255,255,255,.12);padding:6px 10px;border-radius:6px;width:fit-content}
+
+/* ---------- fluxo ---------- */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;counter-reset:s}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:grid;gap:8px;align-content:start;position:relative}
+.step .n{font:800 1.6rem/1 var(--f-display);color:var(--accent)}
+.step p{color:var(--muted);font-size:.9rem}
+.step .who{font:600 .72rem/1.3 var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--brand)}
+:root[data-theme="dark"] .step .who{color:var(--accent)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .step .who{color:var(--accent)}}
+
+/* ---------- critérios ---------- */
+.crit{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.c{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:10px;grid-template-rows:auto auto 1fr auto}
+.c .k{font:600 .7rem/1 var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.c .rule{font:700 1.35rem/1.1 var(--f-display);color:var(--ink)}
+.c p{font-size:.86rem;color:var(--muted)}
+.c .field{font:500 .74rem/1.4 var(--f-mono);color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
+.c.new{border-color:var(--accent)}
+.c.new .k::after{content:"campo novo";margin-left:8px;background:var(--accent-soft);color:var(--accent);padding:2px 6px;border-radius:4px;letter-spacing:.04em}
+
+.levels{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.lv{border-radius:var(--r);padding:18px;display:grid;gap:6px;border:1px solid var(--line);background:var(--surface)}
+.lv .big{font:800 1.5rem/1.1 var(--f-display)}
+.lv .req{font:600 .8rem/1.2 var(--f-mono)}
+.lv p{font-size:.88rem;color:var(--muted)}
+.lv.jantar{background:var(--gold-soft);border-color:transparent}
+.lv.jantar .big,.lv.jantar .req{color:var(--gold)}
+.lv.brinde{background:var(--accent-soft);border-color:transparent}
+.lv.brinde .big,.lv.brinde .req{color:var(--accent)}
+.lv.none .big,.lv.none .req{color:var(--muted)}
+.dots{display:flex;gap:4px}
+.dots i{width:12px;height:12px;border-radius:50%;background:var(--line)}
+.jantar .dots i{background:var(--gold)}
+.brinde .dots i:nth-child(-n+3){background:var(--accent)}
+
+/* ---------- planilha ---------- */
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.summary{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;font:600 .82rem/1 var(--f-body);padding:8px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-variant-numeric:tabular-nums}
+.chip b{font-family:var(--f-display);font-size:1rem}
+.chip.j{background:var(--gold-soft);border-color:transparent;color:var(--gold)}
+.chip.b{background:var(--accent-soft);border-color:transparent;color:var(--accent)}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+button{font:600 .85rem/1 var(--f-body);border-radius:8px;padding:10px 14px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+button.primary{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+button:hover{filter:brightness(1.06)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+
+.sheet{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%;min-width:1180px;font-size:.84rem;font-variant-numeric:tabular-nums}
+thead th{position:sticky;top:0;background:var(--surface-2);text-align:left;font:600 .7rem/1.25 var(--f-body);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);padding:8px 8px;border-bottom:1px solid var(--line);vertical-align:bottom}
+thead tr.groups th{font-size:.66rem;padding:6px 8px;border-bottom:none;text-align:center}
+thead tr.groups th.in{color:var(--brand);background:var(--surface-2)}
+thead tr.groups th.out{color:var(--accent)}
+.colL{font:600 .66rem/1 var(--f-mono);color:var(--muted);opacity:.7;display:block;margin-bottom:3px}
+td{padding:6px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr{cursor:pointer}
+tbody tr:hover td{background:color-mix(in srgb,var(--surface-2) 60%,transparent)}
+tbody tr.sel td{background:color-mix(in srgb,var(--accent-soft) 70%,transparent)}
+td input,td select{width:100%;font:500 .84rem/1.2 var(--f-body);color:var(--ink);background:transparent;border:1px solid transparent;border-radius:6px;padding:6px 6px}
+td input:hover,td select:hover{border-color:var(--line)}
+td input:focus,td select:focus{background:var(--surface);border-color:var(--accent)}
+td input.num{text-align:right;width:58px}
+td.name input{min-width:250px;font-weight:700}
+td.desc input{min-width:200px}
+td.sep{border-left:2px solid var(--line)}
+.ck{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:6px;font-weight:800;font-size:.85rem}
+.ck.y{background:var(--ok-soft);color:var(--ok)}
+.ck.n{background:var(--no-soft);color:var(--no)}
+.score{font:800 1rem/1 var(--f-display);text-align:center}
+.pill{display:inline-block;padding:6px 10px;border-radius:999px;font:700 .76rem/1 var(--f-body);white-space:nowrap}
+.pill.jantar{background:var(--gold-soft);color:var(--gold)}
+.pill.brinde{background:var(--accent-soft);color:var(--accent)}
+.pill.none{background:var(--surface-2);color:var(--muted)}
+.pct{display:block;font:500 .7rem/1 var(--f-mono);color:var(--muted);margin-top:3px;text-align:right}
+.del{border:none;background:none;color:var(--muted);padding:6px;font-size:1rem}
+.sample{font-size:.8rem;color:var(--muted)}
+
+/* ---------- detalhe ---------- */
+.detail{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.detail .verdict{display:grid;gap:10px;align-content:start}
+.detail .verdict .big{font:800 2rem/1.05 var(--f-display)}
+.detail .verdict p{color:var(--muted);font-size:.9rem}
+.detail ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.detail li{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;font-size:.9rem}
+.detail li small{display:block;color:var(--muted);font-size:.8rem}
+.meter{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden;display:flex;gap:3px}
+.meter span{flex:1;background:var(--line);border-radius:99px}
+.meter span.on{background:var(--ok)}
+
+/* ---------- excel ---------- */
+.formulas{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow-x:auto}
+.formulas table{min-width:760px}
+.formulas td{padding:10px 12px;font-size:.86rem}
+.formulas td:first-child{font:700 .82rem/1 var(--f-mono);color:var(--accent);width:44px}
+.formulas code{font:500 .8rem/1.4 var(--f-mono);background:var(--surface-2);padding:4px 7px;border-radius:5px;white-space:nowrap}
+.formulas .ty{font:600 .7rem/1 var(--f-body);letter-spacing:.06em;text-transform:uppercase}
+.ty.in{color:var(--brand)} .ty.calc{color:var(--accent)}
+:root[data-theme="dark"] .ty.in{color:var(--muted)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ty.in{color:var(--muted)}}
+.tip{font-size:.85rem;color:var(--muted);max-width:80ch}
+
+footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+@media (max-width:980px){
+  .crit{grid-template-columns:repeat(2,1fr)}
+  .flow{grid-template-columns:repeat(2,1fr)}
+  .detail{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  .crit,.flow,.levels{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:no-preference){
+  .ck,.pill{transition:background-color .2s,color .2s}
+}
+</style>
+
+<header class="top">
+  <svg class="paw" viewBox="0 0 100 100" aria-hidden="true"><g fill="currentColor"><ellipse cx="50" cy="66" rx="22" ry="19"/><ellipse cx="24" cy="40" rx="9" ry="12"/><ellipse cx="41" cy="26" rx="9" ry="12"/><ellipse cx="60" cy="26" rx="9" ry="12"/><ellipse cx="77" cy="40" rx="9" ry="12"/></g></svg>
+  <div class="wrap">
+    <div class="brandline"><b>EJEQ</b> Diretoria de Projetos · 2026</div>
+    <h1>Reconhecimento da <em>alcateia</em>: brinde e jantar</h1>
+    <p>Como um projeto passa a ser elegível ao brinde ou ao jantar. Os dados vêm do fluxo de planilhas que já alimenta o Power BI. A única coisa nova para o Gerente de Projetos preencher é o campo de inovação.</p>
+    <span class="note">Protótipo: a planilha abaixo é interativa e usa projetos de exemplo.</span>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="fluxo">
+    <div class="sec-head">
+      <span class="eyebrow">Como funciona</span>
+      <h2>Do dado do projeto ao reconhecimento</h2>
+    </div>
+    <div class="flow">
+      <div class="step"><span class="n">1</span><span class="who">Gerente de Projetos</span><h3>Alimenta a planilha</h3><p>Ao longo da execução, preenche CSAT, entregas, repasses e metas no fluxo que já reporta ao Power BI. No fim, marca se houve inovação e descreve.</p></div>
+      <div class="step"><span class="n">2</span><span class="who">Planilha</span><h3>Calcula a elegibilidade</h3><p>Cada critério vira 1 (atingido) ou 0 (não atingido). A soma define o nível: 3 ou 4 critérios dá brinde, 5 critérios dá jantar.</p></div>
+      <div class="step"><span class="n">3</span><span class="who">Coordenação + Diretoria</span><h3>Validam juntos</h3><p>Coordenador(a) e Diretor(a) de Projetos conferem os números e confirmam o resultado. A decisão parte de indicadores, não de percepção.</p></div>
+      <div class="step"><span class="n">4</span><span class="who">EJEQ inteira</span><h3>Reconhece e divulga</h3><p>Entrega do brinde ou reembolso do jantar via pipe de G&amp;G. O projeto é apresentado em Reunião Geral e celebrado no grupo EXEQ.</p></div>
+    </div>
+  </section>
+
+  <section id="criterios">
+    <div class="sec-head">
+      <span class="eyebrow">Os 5 critérios</span>
+      <h2>O que é validado em cada projeto</h2>
+      <p class="lede">Todos os critérios têm uma regra objetiva. Os campos em fonte mono são as colunas que o Gerente de Projetos preenche.</p>
+    </div>
+    <div class="crit">
+      <div class="c"><span class="k">CSAT</span><span class="rule">média ≥ 4,7</span><p>Satisfação do cliente com a entrega. Reflexo direto do sucesso do projeto.</p><span class="field">CSAT médio do projeto</span></div>
+      <div class="c"><span class="k">Prazo das entregas</span><span class="rule">100% no prazo</span><p>Cronograma acordado com o cliente cumprido, com semanas de segurança.</p><span class="field">entregas previstas<br>entregas no prazo</span></div>
+      <div class="c"><span class="k">Repasses semanais</span><span class="rule">100% feitos</span><p>Transparência e comunicação constante sobre o andamento do projeto.</p><span class="field">repasses previstos<br>repasses feitos</span></div>
+      <div class="c"><span class="k">Metas do projeto</span><span class="rule">≥ 85% batidas</span><p>Objetivos específicos definidos no início e atingidos na finalização.</p><span class="field">metas definidas<br>metas batidas</span></div>
+      <div class="c new"><span class="k">Inovação</span><span class="rule">Sim</span><p>Solução, ferramenta ou metodologia fora do padrão da Diretoria, ou entrega extra que agregou valor.</p><span class="field">inovação (Sim/Não)<br>descrição breve</span></div>
+    </div>
+    <div class="levels">
+      <div class="lv jantar"><div class="dots"><i></i><i></i><i></i><i></i><i></i></div><span class="big">Jantar</span><span class="req">5 de 5 critérios</span><p>Até R$ 450 para a equipe (valor pensado para 5 membros). A equipe escolhe o local; o GP envia a nota fiscal única pelo pipe de reembolso.</p></div>
+      <div class="lv brinde"><div class="dots"><i></i><i></i><i></i><i></i><i></i></div><span class="big">Brinde</span><span class="req">3 ou 4 de 5 critérios</span><p>Brinde personalizado com a identidade da EJEQ e, quando possível, um elemento do projeto: garrafa, moleskine com caneta ou ecobag.</p></div>
+      <div class="lv none"><div class="dots"><i></i><i></i><i></i><i></i><i></i></div><span class="big">Sem reconhecimento</span><span class="req">0 a 2 de 5 critérios</span><p>O projeto segue acompanhado normalmente. Os critérios não atingidos mostram onde a equipe pode melhorar.</p></div>
+    </div>
+  </section>
+
+  <section id="planilha">
+    <div class="sec-head">
+      <span class="eyebrow">Planilha de acompanhamento</span>
+      <h2>Teste a validação</h2>
+      <p class="lede">Edite qualquer célula e veja os critérios e o nível mudarem na hora. Clique em uma linha para ver o motivo do resultado.</p>
+    </div>
+    <div class="toolbar">
+      <div class="summary" id="summary"></div>
+      <div class="btns">
+        <button class="primary" id="add">+ Adicionar projeto</button>
+        <button id="reset">Restaurar exemplos</button>
+      </div>
+    </div>
+    <div class="sheet">
+      <table id="sheet">
+        <thead>
+          <tr class="groups">
+            <th class="in" colspan="10">Preenchido pelo Gerente de Projetos</th>
+            <th class="out" colspan="8">Calculado pela planilha</th>
+            <th></th>
+          </tr>
+          <tr>
+            <th><span class="colL">A</span>Projeto</th>
+            <th><span class="colL">B</span>CSAT médio</th>
+            <th><span class="colL">C</span>Entregas previstas</th>
+            <th><span class="colL">D</span>Entregas no prazo</th>
+            <th><span class="colL">E</span>Repasses previstos</th>
+            <th><span class="colL">F</span>Repasses feitos</th>
+            <th><span class="colL">G</span>Metas definidas</th>
+            <th><span class="colL">H</span>Metas batidas</th>
+            <th><span class="colL">I</span>Inovação</th>
+            <th><span class="colL">J</span>Descrição da inovação</th>
+            <th class="sep"><span class="colL">K</span>CSAT</th>
+            <th><span class="colL">L</span>Prazo</th>
+            <th><span class="colL">M</span>Repasses</th>
+            <th><span class="colL">N</span>Metas</th>
+            <th><span class="colL">O</span>Inov.</th>
+            <th><span class="colL">P</span>Total</th>
+            <th><span class="colL">Q</span>Nível</th>
+            <th><span class="colL">R</span>Validação</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="sample">Projetos fictícios, apenas para demonstração. As edições ficam salvas só no seu navegador.</p>
+
+    <div class="detail" id="detail" aria-live="polite"></div>
+  </section>
+
+  <section id="excel">
+    <div class="sec-head">
+      <span class="eyebrow">Para montar no Excel</span>
+      <h2>Colunas e fórmulas</h2>
+      <p class="lede">A mesma lógica da planilha acima, pronta para colar na linha 2 do Excel em português (separador <code>;</code>) e arrastar para baixo.</p>
+    </div>
+    <div class="formulas">
+      <table>
+        <tbody id="ftable"></tbody>
+      </table>
+    </div>
+    <p class="tip">Dica: na coluna I, use Dados › Validação de Dados › Lista com <code>Sim;Não</code>, e na coluna R a lista <code>Pendente;Validado</code>. Uma formatação condicional em Q (dourado para “Jantar”, laranja para “Brinde”) deixa o resultado visível de longe.</p>
+  </section>
+
+  <footer>
+    <span>EJEQ · Diretoria de Projetos · Proposta de sistema de motivação extrínseca e visibilidade</span>
+    <span>Inspirado no modelo do GEPEA (UNICAMP)</span>
+  </footer>
+</main>
+
+<script>
+(function(){
+  const KEY = "ejeq-reconhecimento-v1";
+  const SAMPLE = [
+    {nome:"Barra proteica de amendoim", csat:"4,9", ep:6, en:6, rp:14, rf:14, md:7, mb:7, inov:"Sim", desc:"Planejamento experimental (DOE) para otimizar a formulação", val:"Validado"},
+    {nome:"Shelf-life de geleia artesanal", csat:"4,8", ep:5, en:5, rp:12, rf:12, md:6, mb:5, inov:"Não", desc:"", val:"Validado"},
+    {nome:"Rotulagem nutricional – linha de pães", csat:"4,6", ep:4, en:4, rp:8, rf:8, md:5, mb:5, inov:"Não", desc:"", val:"Pendente"},
+    {nome:"Adequação às Boas Práticas de Fabricação", csat:"4,5", ep:7, en:6, rp:16, rf:15, md:8, mb:7, inov:"Sim", desc:"Checklist digital de BPF entregue a mais para o cliente", val:"Pendente"},
+    {nome:"Molho vegano de castanhas", csat:"4,2", ep:5, en:4, rp:10, rf:9, md:6, mb:4, inov:"Não", desc:"", val:"Pendente"}
+  ];
+  let rows, sel = 0;
+  try { rows = JSON.parse(localStorage.getItem(KEY)); } catch(e) {}
+  if (!Array.isArray(rows) || !rows.length) rows = SAMPLE.map(r => ({...r}));
+
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(rows)); } catch(e) {} };
+  const num = v => { const n = parseFloat(String(v).replace(",", ".")); return isNaN(n) ? null : n; };
+  const pct = (a,b) => (num(b) > 0 && num(a) !== null) ? num(a)/num(b) : null;
+  const fmtPct = p => p === null ? "—" : Math.round(p*100) + "%";
+  const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+  function evaluate(r){
+    const csat = num(r.csat);
+    const pPrazo = pct(r.en, r.ep), pRep = pct(r.rf, r.rp), pMeta = pct(r.mb, r.md);
+    const c = [
+      {k:"CSAT", ok: csat !== null && csat >= 4.7, info: csat === null ? "CSAT não preenchido" : `Média ${String(csat).replace(".", ",")} (mínimo 4,7)`},
+      {k:"Prazo das entregas", ok: pPrazo !== null && pPrazo >= 1, info: pPrazo === null ? "Entregas não preenchidas" : `${num(r.en)} de ${num(r.ep)} no prazo (${fmtPct(pPrazo)}, precisa de 100%)`},
+      {k:"Repasses semanais", ok: pRep !== null && pRep >= 1, info: pRep === null ? "Repasses não preenchidos" : `${num(r.rf)} de ${num(r.rp)} feitos (${fmtPct(pRep)}, precisa de 100%)`},
+      {k:"Metas do projeto", ok: pMeta !== null && pMeta >= 0.85, info: pMeta === null ? "Metas não preenchidas" : `${num(r.mb)} de ${num(r.md)} batidas (${fmtPct(pMeta)}, mínimo 85%)`},
+      {k:"Inovação", ok: r.inov === "Sim", info: r.inov === "Sim" ? (r.desc ? r.desc : "Marcada como Sim (falta descrição)") : "Nenhuma inovação registrada"}
+    ];
+    const total = c.filter(x => x.ok).length;
+    const nivel = total === 5 ? "jantar" : total >= 3 ? "brinde" : "none";
+    return {c, total, nivel, pPrazo, pRep, pMeta};
+  }
+  const NIVEL = {jantar:"Jantar", brinde:"Brinde", none:"Sem reconhecimento"};
+
+  const tbody = document.getElementById("rows");
+
+  function rowHTML(r, i){
+    const inp = (f, cls="num") => `<input class="${cls}" id="c-${i}-${f}" data-f="${f}" value="${esc(r[f])}" inputmode="${cls==="num"?"decimal":"text"}" aria-label="${f}">`;
+    return `<tr data-i="${i}" class="${i===sel?"sel":""}">
+      <td class="name">${inp("nome","")}</td>
+      <td>${inp("csat")}</td>
+      <td>${inp("ep")}</td><td>${inp("en")}<span class="pct" data-o="pPrazo"></span></td>
+      <td>${inp("rp")}</td><td>${inp("rf")}<span class="pct" data-o="pRep"></span></td>
+      <td>${inp("md")}</td><td>${inp("mb")}<span class="pct" data-o="pMeta"></span></td>
+      <td><select id="c-${i}-inov" data-f="inov" aria-label="Inovação"><option${r.inov==="Sim"?" selected":""}>Sim</option><option${r.inov!=="Sim"?" selected":""}>Não</option></select></td>
+      <td class="desc">${inp("desc","")}</td>
+      <td class="sep" data-o="c0"></td><td data-o="c1"></td><td data-o="c2"></td><td data-o="c3"></td><td data-o="c4"></td>
+      <td class="score" data-o="total"></td>
+      <td data-o="nivel"></td>
+      <td><select id="c-${i}-val" data-f="val" aria-label="Validação"><option${r.val!=="Validado"?" selected":""}>Pendente</option><option${r.val==="Validado"?" selected":""}>Validado</option></select></td>
+      <td><button class="del" data-del="${i}" aria-label="Remover projeto" title="Remover">×</button></td>
+    </tr>`;
+  }
+
+  function paintRow(tr){
+    const i = +tr.dataset.i, e = evaluate(rows[i]);
+    e.c.forEach((c, k) => { tr.querySelector(`[data-o="c${k}"]`).innerHTML = `<span class="ck ${c.ok?"y":"n"}" title="${esc(c.info)}">${c.ok?"✓":"✕"}</span>`; });
+    tr.querySelector('[data-o="total"]').textContent = e.total + "/5";
+    tr.querySelector('[data-o="nivel"]').innerHTML = `<span class="pill ${e.nivel}">${NIVEL[e.nivel]}</span>`;
+    ["pPrazo","pRep","pMeta"].forEach(p => tr.querySelector(`[data-o="${p}"]`).textContent = fmtPct(e[p]));
+  }
+
+  function renderSummary(){
+    const ev = rows.map(evaluate);
+    const j = ev.filter(e => e.nivel==="jantar").length, b = ev.filter(e => e.nivel==="brinde").length;
+    const v = rows.filter(r => r.val==="Validado").length;
+    document.getElementById("summary").innerHTML =
+      `<span class="chip"><b>${rows.length}</b> projetos</span>
+       <span class="chip j"><b>${j}</b> jantar</span>
+       <span class="chip b"><b>${b}</b> brinde</span>
+       <span class="chip"><b>${v}</b> validados</span>`;
+  }
+
+  function renderDetail(){
+    const el = document.getElementById("detail");
+    const r = rows[sel];
+    if (!r) { el.innerHTML = `<p class="lede">Adicione um projeto para ver a análise.</p>`; return; }
+    const e = evaluate(r);
+    const why = e.nivel === "jantar"
+      ? "Atingiu os 5 critérios. A equipe recebe até R$ 450 para o jantar e o projeto é apresentado em Reunião Geral."
+      : e.nivel === "brinde"
+      ? `Atingiu ${e.total} de 5 critérios. Cada membro recebe o brinde personalizado${e.total===4?"; faltou 1 critério para o jantar":""}.`
+      : `Atingiu ${e.total} de 5 critérios. São necessários pelo menos 3 para o brinde.`;
+    const color = e.nivel==="jantar" ? "var(--gold)" : e.nivel==="brinde" ? "var(--accent)" : "var(--muted)";
+    el.innerHTML = `
+      <div class="verdict">
+        <span class="eyebrow">Resultado do projeto</span>
+        <h3>${esc(r.nome) || "Projeto sem nome"}</h3>
+        <span class="big" style="color:${color}">${NIVEL[e.nivel]}</span>
+        <div class="meter" aria-hidden="true">${e.c.map(c=>`<span class="${c.ok?"on":""}"></span>`).join("")}</div>
+        <p>${why}</p>
+        <p>Validação: <strong>${r.val==="Validado" ? "confirmada pela Coordenação e Diretoria" : "pendente de Coordenação e Diretoria"}</strong></p>
+      </div>
+      <ul>${e.c.map(c=>`<li><span class="ck ${c.ok?"y":"n"}">${c.ok?"✓":"✕"}</span><span><strong>${c.k}</strong><small>${esc(c.info)}</small></span></li>`).join("")}</ul>`;
+  }
+
+  function render(){
+    tbody.innerHTML = rows.map(rowHTML).join("");
+    tbody.querySelectorAll("tr").forEach(paintRow);
+    renderSummary(); renderDetail();
+  }
+
+  function select(i){
+    if (i === sel) return;
+    sel = i;
+    tbody.querySelectorAll("tr").forEach(tr => tr.classList.toggle("sel", +tr.dataset.i === sel));
+    renderDetail();
+  }
+
+  tbody.addEventListener("input", ev => {
+    const t = ev.target, tr = t.closest("tr"); if (!t.dataset.f || !tr) return;
+    const i = +tr.dataset.i;
+    rows[i][t.dataset.f] = t.value;
+    paintRow(tr); renderSummary(); select(i); renderDetail(); save();
+  });
+  tbody.addEventListener("click", ev => {
+    const d = ev.target.closest("[data-del]");
+    if (d) {
+      rows.splice(+d.dataset.del, 1);
+      sel = Math.min(sel, rows.length - 1);
+      save(); render(); return;
+    }
+    const tr = ev.target.closest("tr"); if (tr) select(+tr.dataset.i);
+  });
+  tbody.addEventListener("focusin", ev => { const tr = ev.target.closest("tr"); if (tr) select(+tr.dataset.i); });
+
+  document.getElementById("add").addEventListener("click", () => {
+    rows.push({nome:"Novo projeto", csat:"", ep:"", en:"", rp:"", rf:"", md:"", mb:"", inov:"Não", desc:"", val:"Pendente"});
+    sel = rows.length - 1; save(); render();
+    const f = document.getElementById(`c-${sel}-nome`); if (f) { f.focus(); f.select(); }
+  });
+  document.getElementById("reset").addEventListener("click", () => {
+    rows = SAMPLE.map(r => ({...r})); sel = 0; save(); render();
+  });
+
+  // Tabela de fórmulas para o Excel
+  const F = [
+    ["A","Projeto","in","Nome do projeto"],
+    ["B","CSAT médio","in","Média do CSAT do projeto (escala 1 a 5)"],
+    ["C","Entregas previstas","in","Nº de entregas no cronograma"],
+    ["D","Entregas no prazo","in","Nº de entregas feitas dentro do prazo"],
+    ["E","Repasses previstos","in","Nº de repasses semanais combinados"],
+    ["F","Repasses feitos","in","Nº de repasses realizados"],
+    ["G","Metas definidas","in","Nº de metas definidas no início"],
+    ["H","Metas batidas","in","Nº de metas atingidas na finalização"],
+    ["I","Inovação","in","Sim / Não (campo novo)"],
+    ["J","Descrição da inovação","in","Texto curto (campo novo)"],
+    ["K","✓ CSAT","calc",'=SE(B2>=4,7;1;0)'],
+    ["L","✓ Prazo","calc",'=SE(E(C2>0;D2>=C2);1;0)'],
+    ["M","✓ Repasses","calc",'=SE(E(E2>0;F2>=E2);1;0)'],
+    ["N","✓ Metas","calc",'=SE(G2>0;SE(H2/G2>=0,85;1;0);0)'],
+    ["O","✓ Inovação","calc",'=SE(I2="Sim";1;0)'],
+    ["P","Total","calc",'=SOMA(K2:O2)'],
+    ["Q","Nível","calc",'=SE(P2=5;"Jantar";SE(P2>=3;"Brinde";"Sem reconhecimento"))'],
+    ["R","Validação","in","Pendente / Validado (Coordenação + Diretoria)"]
+  ];
+  document.getElementById("ftable").innerHTML = F.map(([c,n,t,v]) =>
+    `<tr><td>${c}</td><td><strong>${n}</strong></td><td><span class="ty ${t}">${t==="in"?"preenchido":"fórmula"}</span></td><td>${t==="calc"?`<code>${esc(v)}</code>`:esc(v)}</td></tr>`).join("");
+
+  render();
+})();
+</script>
